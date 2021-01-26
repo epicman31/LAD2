@@ -44,6 +44,7 @@ int main() {
 				{
 				printf("Login found !\n");
 				}
+				free(contenu);
 
 				if(pdu_response(type,login,code_retour,payload)!=1) {
 					printf("Erreur d'emission\n");
