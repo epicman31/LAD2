@@ -9,6 +9,8 @@ int main() {
 	char *message = NULL;
 	struct requete_client rq;
 	int nbr_para = 6;
+	unsigned long taille = 0; // variable utilisé pour la taille des fichiers
+	char * contenu; // variable utilisé pour le contenu de fichier 
 
 
 	char code_retour = 'f';
@@ -33,6 +35,15 @@ int main() {
 				strcpy(login,rq.login);
 				strcpy(payload,rq.payload);
 				free(message);
+				
+				// Verification premission de consultation d'un annuaire //
+				char filename[] = strcat(rq.login,"-permission.txt");
+				contenu = (char *) malloc(taille); // variable de la taille du fichier
+				lecture(filename, contenu, taille);
+				if(strstr(contenu, target) != NULL)
+				{
+				printf("Login found !\n");
+				}
 
 				if(pdu_response(type,login,code_retour,payload)!=1) {
 					printf("Erreur d'emission\n");
