@@ -47,8 +47,13 @@ int pdu_reception(char *requete,int nbr_para,struct requete_client *ptr_stru);
 
 int pdu_response(char type,char *login,char code_retour,char *payload);
 
+unsigned long longueur_fichier(char *file_name);
+
+int lecture(char *filename, char *contenu, int taille);
+
 /* Ferme la connexion avec le client.
  */
+
 void TerminaisonClient();
 
 /* Arrete le serveur.
