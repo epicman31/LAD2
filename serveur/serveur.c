@@ -308,6 +308,44 @@ int pdu_reception(char *requete,int nbr_para,struct requete_client *ptr_stru){
 
 	return 0; //fail
 }
+// lecture du fichier filename dans contenu de longueur taille
+int lecture(char *filename, char *contenu, int taille)
+{
+    FILE *fp;
+	
+	if((fp = fopen(filename, "r")) == NULL) { // ouverture fichier
+		return(-1);
+	}
+
+	fread(contenu, taille, 1, fp); //lecture du fichier dans contenu
+	fclose(fp);
+	return(0);
+}
+// Fonction de calcul de taille d'un fichier
+unsigned long longueur_fichier(char *file_name)
+{
+	FILE *file;
+
+    /* INITIALISATION DES PARAMETRES */
+
+	unsigned long fin = 0;
+
+	// OUVERTURE DU FICHIER
+
+	if ((file = fopen(file_name, "r")) == NULL)
+	{
+		fputs("Impossible d ouvrir le fichier.", stdout);
+	}
+	else
+	{
+		fseek(file,0,SEEK_END);
+		fin = ftell(file); //fin du fichier
+	}
+
+	fclose(file);
+
+	return fin;
+}
 
 /* Ferme la connexion avec le client.
  */
