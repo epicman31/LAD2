@@ -321,6 +321,7 @@ int lecture(char *filename, char *contenu, int taille)
 	fclose(fp);
 	return(0);
 }
+
 // Fonction de calcul de taille d'un fichier
 unsigned long longueur_fichier(char *file_name)
 {
